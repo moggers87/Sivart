@@ -1,0 +1,8 @@
+{% extends "sivart/base.html" %}
+
+{% block content %}
+<form action="{% url 'repo-redirect' %}">
+<input name="{{ REDIRECT_PARAM }}" placeholder="Repo slug, e.g. moggers87/Sivart">
+<button>Go</button>
+</form>
+{% endblock %}

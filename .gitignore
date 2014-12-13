@@ -3,8 +3,9 @@ __pycache__/
 *.py[cod]
 
 # sivart specific
-settings.ini
 db.sqlite3
+settings.ini
+sivart_cache
 
 # C extensions
 *.so
