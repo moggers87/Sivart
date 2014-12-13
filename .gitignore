@@ -2,6 +2,10 @@
 __pycache__/
 *.py[cod]
 
+# sivart specific
+settings.ini
+db.sqlite3
+
 # C extensions
 *.so
 
