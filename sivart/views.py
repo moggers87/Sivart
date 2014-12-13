@@ -25,6 +25,7 @@ from django.views import generic
 
 from braces.views import SetHeadlineMixin
 from travispy import TravisPy
+from travispy.errors import TravisError
 
 REDIRECT_PARAM = "repo"
 
@@ -51,7 +52,10 @@ class RepoView(SetHeadlineMixin, generic.TemplateView):
 
     def get_repo(self):
         if not hasattr(self, "_repo"):
-            self._repo = TravisPy().repo(self.kwargs["repo_slug"])
+            try:
+                self._repo = TravisPy().repo(self.kwargs["repo_slug"])
+            except TravisError:
+                self._repo = None
 
         if self._repo is None:
             raise Http404
