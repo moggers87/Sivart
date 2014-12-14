@@ -6,6 +6,7 @@ __pycache__/
 db.sqlite3
 settings.ini
 sivart_cache
+static_content
 
 # C extensions
 *.so

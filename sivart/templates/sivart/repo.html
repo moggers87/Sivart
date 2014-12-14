@@ -4,24 +4,26 @@
 <h3>{{ repo_slug }}</h3>
 <h5>{{ repo.discription }}</h5>
 {% if repo.last_build_state != "" %}
-    <table>
-        <tr><th colspan="2">Last Build</th></tr>
-        <tr>
-            <th>State</th>
-            <td>{{ repo.last_build.state }}</td>
-        </tr>
-        <tr>
-            <th>Started</th>
-            <td>{{ repo.last_build.started_at }}</td>
-        </tr>
-        <tr>
-            <th>Finished</th>
-            <td>{{ repo.last_build.finished_at }}</td>
-        </tr>
-        <tr>
-            <th>Duration</th>
-            <td>{{ repo.last_build.duration }} seconds</td>
-        </tr>
+    <table class="table table-bordered table-striped table-hover">
+        <thead><tr><th colspan="2">Last Build</th></tr></thead>
+        <tbody>
+            <tr>
+                <th>State</th>
+                <td>{{ repo.last_build.state }}</td>
+            </tr>
+            <tr>
+                <th>Started</th>
+                <td>{{ repo.last_build.started_at }}</td>
+            </tr>
+            <tr>
+                <th>Finished</th>
+                <td>{{ repo.last_build.finished_at }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ repo.last_build.duration }} seconds</td>
+            </tr>
+        </tbody>
     </table>
 {% else %}
     <p><i>{{ repo_slug }}</i> does not have any builds</p>

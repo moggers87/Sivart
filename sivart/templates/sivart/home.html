@@ -1,8 +1,19 @@
 {% extends "sivart/base.html" %}
 
 {% block content %}
-<form action="{% url 'repo-redirect' %}">
-<input name="{{ REDIRECT_PARAM }}" placeholder="Repo slug, e.g. moggers87/Sivart">
-<button>Go</button>
-</form>
+<div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <form role="form" method="get" action="{% url 'repo-redirect' %}">
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="repo_slug" class="sr-only">Repo slug, e.g. moggers87/Sivart</label>
+                    <input id="repo_slug" class="form-control" type="text" name="{{ REDIRECT_PARAM }}" placeholder="Repo slug, e.g. moggers87/Sivart">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary">Go</button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
