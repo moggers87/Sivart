@@ -1,15 +1,23 @@
 {% extends "sivart/base.html" %}
 
 {% block content %}
-<h3>{{ repo_slug }}</h3>
-<h5>{{ repo.discription }}</h5>
+<h3>
+    {{ repo_slug }}
+    <small>{{ repo.description }}</small>
+</h3>
+<br />
+
 {% if repo.last_build_state != "" %}
     <table class="table table-bordered table-striped table-hover">
-        <thead><tr><th colspan="2">Last Build</th></tr></thead>
+        <caption>Last Build</caption>
         <tbody>
             <tr>
+                <th>Number</th>
+                <td>{{ repo.last_build.number }}</td>
+            </tr>
+            <tr>
                 <th>State</th>
-                <td>{{ repo.last_build.state }}</td>
+                <td class="text-capitalize">{{ repo.last_build.state }}</td>
             </tr>
             <tr>
                 <th>Started</th>
@@ -21,8 +29,20 @@
             </tr>
             <tr>
                 <th>Duration</th>
-                <td>{{ repo.last_build.duration }} seconds</td>
+                <td>{{ repo.last_build.duration|default:"-" }} seconds</td>
             </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered table-striped table-hover">
+        <caption>Jobs</caption>
+        <tbody>
+            {% for job in repo.last_build.jobs %}
+                <tr>
+                    <th>{{ job.number }}</th>
+                    <td class="text-capitalize">{{ job.state }}</td>
+                    <td>{{ job.duration|default:"-" }} seconds</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% else %}
