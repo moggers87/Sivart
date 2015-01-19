@@ -162,6 +162,9 @@ if config["cache"]["backend"] == "file":
 else:
     CACHES["default"]["LOCATION"] = config["cache"]["location"]
 
+# short cache
+CACHE_MIDDLEWARE_SECONDS = 60
+
 if not DEBUG:
     # These security settings are annoying while debugging
     CSRF_COOKIE_SECURE = True
@@ -179,11 +182,13 @@ if DEBUG:
     INSTALLED_APPS += ('debug_toolbar', )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
